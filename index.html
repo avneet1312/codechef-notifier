@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CodeChef Notifier</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <style>
+    /* CSS for CodeChef Notifier with animations */
+    /* ... */
+    
+    .error-message {
+      color: rgb(57, 251, 92);
+      font-size: 0.8rem;
+      margin-top: 0.5rem;
+    }
+  </style>
+  <script>
+    function showNotification() {
+      var usernameInput = document.getElementById("username");
+      var username = usernameInput.value;
+      var errorMessage = document.getElementById("error-message");
+
+      if (username === "") {
+        errorMessage.textContent = "Please enter your CodeChef username.";
+        return;
+      }
+
+      errorMessage.textContent = ""; // Clear any previous error message
+      alert("Notifier created for " + username + ".");
+    }
+    
+    function openCodeChefWebsite() {
+      window.open("https://www.codechef.com/", "_blank");
+    }
+    
+    function openAboutUsPage() {
+      window.open("about.html", "_blank");
+    }
+
+    // Function to retrieve the latest contests
+    function getLatestContests() {
+      var contestList = document.getElementById("contest-list");
+
+      // Clear previous contest list
+      contestList.innerHTML = '';
+
+      // Define the latest contests
+      var contests = [
+        { name: "Starters97", date: "5 July, 2023" },
+        { name: "Starters98", date: "12 July, 2023" },
+        { name: "Starters99", date: "19 July, 2023" },
+        { name: "Starters100", date: "23 July, 2023" }
+      ];
+
+      // Add each contest to the list
+      contests.forEach(function (contest) {
+        var listItem = document.createElement("li");
+        listItem.textContent = contest.name + " - " + contest.date;
+        contestList.appendChild(listItem);
+      });
+    }
+  </script>
+</head>
+<body>
+  <div class="container">
+    <img src="codechef-logo.png" alt="CodeChef logo" class="logo">
+    <h1>CodeChef Notifier</h1>
+    <div class="top-right">
+      <button onclick="openCodeChefWebsite()">Enter CodeChef</button>
+      <button onclick="openAboutUsPage()">About Us</button>
+    </div>
+    <p>Simply enter your CodeChef username below and click "Submit" to start receiving notifications!</p>
+
+    <input type="text" id="username" placeholder="Enter your CodeChef username..." style="width: 70%;">
+    <p id="error-message" class="error-message"></p>
+
+    <button id="submit" onclick="showNotification()">Submit</button>
+  </div>
+
+  <!-- Latest Contests Box -->
+  <div class="latest-contests-box">
+    <h2>Latest Contests</h2>
+    <ul id="contest-list"></ul>
+  </div>
+
+  <script>
+    // Get the latest contests on page load
+    getLatestContests();
+  </script>
+</body>
+</html>
